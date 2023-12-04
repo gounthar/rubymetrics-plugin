@@ -1,5 +1,6 @@
 package hudson.plugins.rubyMetrics.rcov;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
@@ -17,7 +18,6 @@ import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.StaplerRequest;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -47,8 +47,8 @@ public class RcovPublisher extends HtmlPublisher implements SimpleBuildStep {
      * {@inheritDoc}
      */
     @Override
-    public void perform(@Nonnull Run<?, ?> run, @Nonnull FilePath workspace, @Nonnull Launcher launcher,
-                        @Nonnull TaskListener listener) throws InterruptedException, IOException {
+    public void perform(@NonNull Run<?, ?> run, @NonNull FilePath workspace, @NonNull Launcher launcher,
+                        @NonNull TaskListener listener) throws InterruptedException, IOException {
         final RcovFilenameFilter indexFilter = new RcovFilenameFilter();
         prepareMetricsReportBeforeParse(run, workspace, listener, indexFilter, DESCRIPTOR.getToolShortName());
         if (run.getResult() == Result.FAILURE) {
